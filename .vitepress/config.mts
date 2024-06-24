@@ -12,8 +12,8 @@ export default defineConfig({
     ['meta', { property: 'og:locale', content: 'en' }],
     ['meta', { property: 'og:title', content: 'Reactive Library | Opt-in reactivity for React' }],
     ['meta', { property: 'og:site_name', content: 'Reactive Library' }],
-    ['meta', { property: 'og:image', content: 'https://vitepress.dev/vitepress-og.jpg' }],
-    ['meta', { property: 'og:url', content: 'https://vitepress.dev/' }],
+    ['meta', { property: 'og:image', content: 'https://reactive-lib.netlify.app/logo.png' }],
+    ['meta', { property: 'og:url', content: 'https://reactive-lib.netlify.app/' }],
   ],
   themeConfig: {
     logo: { src: '/logo.svg', width: 24, height: 24 },
@@ -65,7 +65,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Lazy-work/reactive-vue' }
     ],
     footer: {
       message: 'Released under the MIT License.',
