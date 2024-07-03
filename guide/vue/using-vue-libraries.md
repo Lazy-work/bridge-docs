@@ -35,6 +35,57 @@ export default defineConfig({
 });
 ```
 
+Here's an improved and corrected version of your documentation for integrating a Vue plugin using the Reactive (Vue) library in React with Vitepress:
+
+---
+
+## Using Vue Plugins
+
+Some Vue libraries require attaching a plugin to your application. Here’s how you can integrate a Vue plugin using the Reactive (Vue) library in React :
+
+1. **Create an App Context**
+
+```js
+const app = createApp();
+```
+
+2. **Use the Vue Plugin**
+
+```js
+app.use(vuePlugin);
+```
+
+3. **Wrap Your React App with `AppProvider`**
+
+```js
+root.render(
+  <AppProvider app={app}>
+    <App />
+  </AppProvider>
+);
+```
+
+Here’s an example using Pinia as the Vue state management library:
+
+```jsx
+import ReactDOM from 'react-dom/client';
+import { createPinia } from 'pinia';
+import { AppProvider, createApp } from '@lazywork/reactive-vue';
+
+const pinia = createPinia();
+const app = createApp();
+
+app.use(pinia);
+
+const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+root.render(
+  <AppProvider app={app}>
+    <App />
+  </AppProvider>,
+);
+```
+
 ## But why using vue libraries in a React project ???
 
 ### Remove overhead
