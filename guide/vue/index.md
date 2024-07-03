@@ -44,3 +44,11 @@ const Counter = $reactive(() => {
   );
 });
 ```
+
+## New to Vue ?
+
+If you haven't used Vue before, especially the Vue Composition API, I suggest you check out the Vue documentation on reactivity before continuing with this documentation :
+
+- [Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+
+- [Computed Properties](https://vuejs.org/guide/essentials/computed.html)
