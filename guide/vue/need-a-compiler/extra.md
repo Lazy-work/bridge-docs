@@ -16,6 +16,20 @@ To set this up, add the following line to your `package.json`:
 }
 ```
 
+If you're using vite, you also need to exclude `@lazywork/reactive-vue`, `vue` and `vue-demi` from `optimizeDeps`
+
+```js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  optimizeDeps: {
+    exclude: ["vue-demi", "vue", "@lazywork/reactive-vue"],
+  },
+});
+```
+
 Next, follow the instructions on the [Vue Macros documentation page](https://vue-macros.dev/features/reactivity-transform.html) to complete the setup.
 
 ### Caution

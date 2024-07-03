@@ -21,7 +21,7 @@ The Reactive (Vue) library leverages most of the Vue Composition API, allowing y
 }
 ```
 
-If you're using vite, you also need to exclude `vue` and `vue-demi` from `optimizeDeps`
+If you're using vite, you also need to exclude `@lazywork/reactive-vue`, `vue` and `vue-demi` from `optimizeDeps`
 
 ```js
 import { defineConfig } from "vite";
@@ -30,7 +30,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ["vue-demi", "vue"],
+    exclude: ["vue-demi", "vue", "@lazywork/reactive-vue"],
   },
 });
 ```
