@@ -1,6 +1,5 @@
 # Conditional rendering
 
-
 To conditionally render, you can do as usual in React :
 
 ```js
@@ -26,9 +25,24 @@ $if(store.count % 2)
   .end();
 ```
 
+::: tip
+To avoid unnecessary creation of elements, you can wrap the JSX in a function. This way, the element will only be created and returned when the conditional statement is fulfilled.
+
+```js
+import { $if } from "@lazywork/reactive-vue";
+
+$if(store.count % 2)
+  .then(() => <p>It's even</p>)
+  .else(() => <p>It's odd</p>)
+  .end();
+```
+:::
+
+
 ## Switch case
 
 The Reactive library provides an `$switch` helper to enable the use of switch case for conditional rendering. The `$switch` helper should be chained with the call of the `case` function, with the first parameter being the value to match and the last parameter being the value to return. The last call chained has to be `default` to return the value after evaluation.
+
 ```js
 $switch(count.value)
   .case(1, <p>It's one</p>)
@@ -54,7 +68,7 @@ Be careful: passing a `true` value as a condition will match the case any time, 
 $switch(value)
   .case(false, <p>The value is false</p>) // Always skipped
   .case(true, <p>The value is true</p>) // Always matched
-  .default()
+  .default();
 ```
 
 To match a boolean value, use comparison just as you would in an if statement :
@@ -67,8 +81,8 @@ $switch(value)
   ...
 ```
 
-
 The `case` function also supports basic pattern matching to match the shape of an object :
+
 ```js
 const result = useTodos();
 
@@ -92,6 +106,7 @@ return () =>
 ```
 
 If you need to match the shape of a ref, the Reactive library provides the `v` helper to make pattern matching more convenient with refs:
+
 ```js
 import { v } from "@lazywork/reactive-vue";
 
@@ -107,9 +122,9 @@ $switch(result)
       ))}
     </ul>
   ))
-  .case({ status: v("error") }, () => (
+  .case(
+    { status: v("error") },
     <p>Oops, something goes wrong: {result.error}</p>
-  ))
+  )
   .default();
 ```
-
