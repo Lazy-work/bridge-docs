@@ -29,16 +29,17 @@ export default defineConfig({
           text: 'Guide (Vue)',
           items: [
             { text: 'Getting Started', link: '/guide/vue/' },
-            { text: 'Integration with React', link: '/guide/vue/integration-with-react' },
-            { text: 'Using vue libraries', link: '/guide/vue/using-vue-libraries' },
-            { text: 'Logic sharing', link: '/guide/vue/logic-sharing' },
             { text: 'Difference with React', link: '/guide/vue/difference-with-react' },
             { text: 'Difference with Vue', link: '/guide/vue/difference-with-vue' },
+            { text: 'Conditional rendering', link: '/guide/vue/conditional-rendering' },
+            { text: 'Logic sharing', link: '/guide/vue/logic-sharing' },
+            { text: 'Integration with React', link: '/guide/vue/integration-with-react' },
+            { text: 'Using vue libraries', link: '/guide/vue/using-vue-libraries' },
             { text: 'Equivalence table', link: '/guide/vue/equivalence' },
             { text: 'Compatibility table', link: '/guide/vue/compatibility' },
             {
               text: 'Need a compiler ?', items: [
-                { text: 'Introduction', link: '/guide/vue/need-a-compiler' },
+                { text: 'Introduction', link: '/guide/vue/need-a-compiler/' },
                 { text: 'Under the hood', link: '/guide/vue/need-a-compiler/under-the-hood' },
                 { text: 'Some Extra', link: '/guide/vue/need-a-compiler/extra' }
               ]
