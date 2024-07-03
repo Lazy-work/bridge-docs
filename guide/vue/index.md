@@ -45,6 +45,12 @@ const Counter = $reactive(() => {
 });
 ```
 
+::: warning
+The Reactive (Vue) library is currently unstable in React Strict Mode. If you encounter any issues, please disable React Strict Mode.
+
+Full support for React Strict Mode will be available in the near future.
+:::
+
 ## New to Vue ?
 
 If you haven't used Vue before, especially the Vue Composition API, I suggest you check out the Vue documentation on reactivity before continuing with this documentation :
