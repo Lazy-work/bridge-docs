@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Bridge Library"
+  name: "Bridge.js Framework"
   text: "React but more reactive"
   tagline: "Ease the complexity of reactivity in React"
   image:
