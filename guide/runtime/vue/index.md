@@ -4,39 +4,190 @@ outline: deep
 
 # Getting started
 
-## Installing the library
+## Installation
 
 ::: code-group
 
 ```bash [NPM]
-$ npm install @bridge/core @bridge/vue vite-plugin-bridge
+$ npm install @bridge/core @bridge/vue unplugin-bridge
 ```
 
 ```bash [Yarn]
-$ yarn add @bridge/core @bridge/vue vite-plugin-bridge
+$ yarn add @bridge/core @bridge/vue unplugin-bridge
 ```
 
 ```bash [PNPM]
-$ pnpm install @bridge/core @bridge/vue vite-plugin-bridge
+$ pnpm install @bridge/core @bridge/vue unplugin-bridge
 ```
 
 ```bash [Bun]
-$ bun install @bridge/core @bridge/vue vite-plugin-bridge
+$ bun install @bridge/core @bridge/vue unplugin-bridge
 ```
 
-```js twoslash [vite.config.js]
-import { bridgeVue } from "vite-plugin-bridge";
-import { defineConfig } from "vite";
+:::
+
+::: code-group
+
+```ts [Vite]
+// vite.config.ts
+import { bridgeVue } from "unplugin-bridge/vite";
 
 export default defineConfig({
   plugins: [
-    bridgeVue({ compiler: false }),
-    // ...
+    bridgeVue({
+      compiler: false,
+      /* options */
+    }),
+    //...
   ],
 });
 ```
 
+```js [webpack]
+// webpack.config.js
+module.exports = {
+  /* ... */
+  plugins: [
+    require("unplugin-bridge/webpack")({
+      compiler: false,
+      /* options */
+    }),
+    //...
+  ],
+};
+```
+
+```js [Rspack]
+// rspack.config.js
+module.exports = {
+  /* ... */
+  plugins: [
+    require("unplugin-bridge/rspack")({
+      compiler: false,
+      /* options */
+    }),
+    //...
+  ],
+};
+```
+
+```ts [Farm]
+// farm.config.ts
+import { bridgeVue } from "unplugin-bridge/farm";
+
+export default defineConfig({
+  plugins: [
+    bridgeVue({
+      compiler: false,
+      /* options */
+    })
+    //...
+  ],
+});
+```
+
+```js [Rollup]
+// rollup.config.js
+import { bridgeVue } from "unplugin-bridge/rollup";
+
+export default {
+  plugins: [
+    bridgeVue({
+      compiler: false,
+      /* options */
+    }),
+    //...
+  ],
+};
+```
+
+```js [Rolldown]
+// rolldown.config.js
+import { bridgeVue } from "unplugin-bridge/rolldown";
+
+export default {
+  plugins: [
+    bridgeVue({
+      compiler: false,
+      /* options */
+    }),
+    //...
+  ],
+};
+```
+
+```js [esbuild]
+// esbuild.config.js
+import { build } from "esbuild";
+import { bridgeVue } from "unplugin-bridge/esbuild";
+
+build({
+  plugins: [
+    bridgeVue({
+      compiler: false,
+      /* options */
+    }),
+    //...
+  ],
+});
+```
+
+```js [Astro]
+// astro.config.mjs
+import { defineConfig } from "astro/config";
+import { bridgeVue } from "unplugin-bridge/astro";
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [
+    bridgeVue({
+      compiler: false,
+      /* options */
+    }),
+  ],
+});
+```
+
+::: warning
+Bridge.js doesn't work with Tanstack Start
 :::
+
+### Babel {#babel}
+
+The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
+
+After installing, add it to your Babel config. Please note that it’s critical that the compiler run first in the pipeline:
+
+```js
+// babel.config.js
+const sharedBridgeConfig = {
+  signals: ["ref", "shallowRef", "reactive", "shallowReactive", "readonly"],
+  module: "@bridge/vue",
+};
+
+const BridgeFastRefreshConfig = {
+  ...sharedBridgeConfig,
+  /* ... */
+};
+
+module.exports = function () {
+  return {
+    plugins: [
+      ["babel-plugin-bridge-fast-refresh", BridgeFastRefreshConfig],
+      // ...
+    ],
+  };
+};
+```
+
+### Expo
+
+Expo uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
+
+### Metro (React Native)
+
+React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
+
 ## Creating a Bridge component
 
 Bridge components are function thats needs to be wrap in the `$bridge` function and return the jsx as a function
@@ -56,6 +207,7 @@ const Counter = $bridge(() => {
   );
 });
 ```
+
 
 ## New to Vue ?
 
