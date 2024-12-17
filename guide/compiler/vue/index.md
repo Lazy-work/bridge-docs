@@ -4,7 +4,7 @@ outline: deep
 
 # Need a compiler ?
 
-While you can use the Bridge.js without any compilation, a compiler is provided to optimize Bridge components and improve the developer experience.
+While you can use the Bridge library without any compilation, a compiler is provided to optimize Bridge components.
 
 ## What are the Benefits?
 
@@ -20,39 +20,130 @@ The compiler is simple but efficient. Leveraging the strong context and primitiv
 
 These optimizations result in more efficient and performant Bridge components, enhancing the overall development experience.
 
-## Manual installation
+## Installation
 
 ::: code-group
 
 ```bash [NPM]
-$ npm install @bridge/core @bridge/vue vite-plugin-bridge
+$ npm install @bridge/core @bridge/vue unplugin-bridge
 ```
 
 ```bash [Yarn]
-$ yarn add @bridge/core @bridge/vue vite-plugin-bridge
+$ yarn add @bridge/core @bridge/vue unplugin-bridge
 ```
 
 ```bash [PNPM]
-$ pnpm install @bridge/core @bridge/vue vite-plugin-bridge
+$ pnpm install @bridge/core @bridge/vue unplugin-bridge
 ```
 
 ```bash [Bun]
-$ bun install @bridge/core @bridge/vue vite-plugin-bridge
+$ bun install @bridge/core @bridge/vue unplugin-bridge
 ```
 
 :::
 
-```js twoslash [vite.config.js]
-import { bridgeVue } from "vite-plugin-bridge";
-import { defineConfig } from "vite";
+::: code-group
+
+```ts [Vite]
+// vite.config.ts
+import { bridgeVue } from 'unplugin-bridge/vite'
 
 export default defineConfig({
   plugins: [
-    bridgeVue(),
-    // ...
+    bridgeVue({
+      /* options */
+    }),
+    react(),
+    //...
   ],
-});
+})
 ```
+
+```js [webpack]
+// webpack.config.js
+module.exports = {
+  /* ... */
+  plugins: [
+    require('unplugin-bridge/webpack')({
+      /* options */
+    }),
+    //...
+  ],
+}
+```
+
+```js [Rspack]
+// rspack.config.js
+module.exports = {
+  /* ... */
+  plugins: [
+    require('unplugin-bridge/rspack')({
+      /* options */
+    }),
+  ],
+}
+```
+
+```ts [Farm]
+// farm.config.ts
+import { bridgeVue } from 'unplugin-bridge/farm'
+
+export default defineConfig({
+  plugins: [
+    bridgeVue({
+      /* options */
+    }),
+  ],
+})
+```
+
+```js [Rollup]
+// rollup.config.js
+import { bridgeVue } from 'unplugin-bridge/rollup'
+
+export default {
+  plugins: [
+    bridgeVue({
+      /* options */
+    }),
+  ],
+}
+```
+
+```js [Rolldown]
+// rolldown.config.js
+import { bridgeVue } from 'unplugin-bridge/rolldown'
+
+export default {
+  plugins: [
+    bridgeVue({
+      /* options */
+    }),
+  ],
+}
+```
+
+```js [esbuild]
+// esbuild.config.js
+import { build } from 'esbuild'
+import { bridgeVue } from 'unplugin-bridge/esbuild'
+
+build({
+  plugins: [bridgeVue({ /* options */ })],
+})
+```
+
+```js [Astro]
+// astro.config.mjs
+import { defineConfig } from 'astro/config'
+import { bridgeVue } from 'unplugin-bridge/astro'
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [bridgeVue({ /* options */ })],
+})
+```
+
 
 ::: warning
 Bridge.js doesn't work with Tanstack Start
@@ -90,21 +181,11 @@ module.exports = function () {
 };
 ```
 
+
 ### Expo
 
-Expo uses Babel via Metro, so refer to the queueJob,
-  queuePostFlushCb,
-  flushJobsUntil,
-  flushPostJobsUntil,
-  flushPreFlushCbs,
-  flushPostFlushCbs,
-  switchToAuto,
-  switchToManual,
-  toggleMode,
-  getJobAt,
-  endFlush,
-  SchedulerJobFlags, section for installation instructions.
+Expo uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
 
 ### Metro (React Native)
 
-React Native uses Babel via Metro, so refer to the flush:  section for installation instructions.
+React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
