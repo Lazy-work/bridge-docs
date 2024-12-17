@@ -1,8 +1,14 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
+import { transformerTwoslash } from "@shikijs/vitepress-twoslash";
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+  localIconLoader,
+} from "vitepress-plugin-group-icons";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Reactive",
+  title: "Bridge",
   description: "Opt-in reactivity for React",
   /* prettier-ignore */
   head: [
@@ -10,67 +16,179 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
-    ['meta', { property: 'og:title', content: 'Reactive Library | Opt-in reactivity for React' }],
-    ['meta', { property: 'og:site_name', content: 'Reactive Library' }],
+    ['meta', { property: 'og:title', content: 'Bridge Library | Opt-in reactivity for React' }],
+    ['meta', { property: 'og:site_name', content: 'Bridge Library' }],
     ['meta', { property: 'og:image', content: 'https://reactive-lib.netlify.app/logo.png' }],
     ['meta', { property: 'og:url', content: 'https://reactive-lib.netlify.app/' }],
   ],
   themeConfig: {
-    logo: { src: '/logo.svg', width: 24, height: 24 },
+    logo: { src: "/logo.svg", width: 24, height: 24 },
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Why this library ?', link: '/guide/' },
-      { text: 'Guide (Vue)', link: '/guide/vue/' }
+      { text: "Why this library ?", link: "/guide/" },
+      { text: "Guide (Core)", link: "/guide/core/"  },
+      { text: "Guide (Vue)", link: "/guide/runtime/vue/"  },
+      { text: "Guide (Solid)", link: "/guide/solid/"  },
     ],
-
     sidebar: {
-      '/guide/vue/': [
+      "/guide/runtime/vue/": [
         {
-          text: 'Guide (Vue)',
+          text: "Guide (Vue)",
           items: [
-            { text: 'Getting Started', link: '/guide/vue/' },
-            { text: 'Difference with React', link: '/guide/vue/difference-with-react' },
-            { text: 'Difference with Vue', link: '/guide/vue/difference-with-vue' },
-            { text: 'Conditional rendering', link: '/guide/vue/conditional-rendering' },
-            { text: 'Logic sharing', link: '/guide/vue/logic-sharing' },
-            { text: 'Integration with React', link: '/guide/vue/integration-with-react' },
-            { text: 'Using vue libraries', link: '/guide/vue/using-vue-libraries' },
-            { text: 'Equivalence table', link: '/guide/vue/equivalence' },
-            { text: 'Compatibility table', link: '/guide/vue/compatibility' },
+            { text: "Getting Started", link: "/guide/runtime/vue/" },
             {
-              text: 'Need a compiler ?', items: [
-                { text: 'Introduction', link: '/guide/vue/need-a-compiler/' },
-                { text: 'Under the hood', link: '/guide/vue/need-a-compiler/under-the-hood' },
-                { text: 'Some Extra', link: '/guide/vue/need-a-compiler/extra' }
-              ]
+              text: "Difference with React",
+              link: "/guide/runtime/vue/difference-with-react",
             },
-            { text: 'Reactivity Fundamentals (Vue docs)', link: 'https://vuejs.org/guide/essentials/reactivity-fundamentals.html' },
-            { text: 'Computed Properties (Vue docs)', link: 'https://vuejs.org/guide/essentials/computed.html' },
-            { text: 'Composition API Reference (Vue docs)', link: 'https://vuejs.org/api/#composition-api' }
-          ]
-        }
+            {
+              text: "Difference with Vue",
+              link: "/guide/runtime/vue/difference-with-vue",
+            },
+            {
+              text: "Conditional rendering",
+              link: "/guide/runtime/vue/conditional-rendering",
+            },
+            { text: "Logic sharing", link: "/guide/runtime/vue/logic-sharing" },
+            {
+              text: "Integration with React",
+              link: "/guide/runtime/vue/integration-with-react",
+            },
+            {
+              text: "Using vue libraries",
+              link: "/guide/runtime/vue/using-vue-libraries",
+            },
+            { text: "Equivalence table", link: "/guide/runtime/vue/equivalence" },
+            { text: "Compatibility table", link: "/guide/runtime/vue/compatibility" },
+            {
+              text: "Reactivity Fundamentals (Vue docs)",
+              link: "https://vuejs.org/guide/essentials/reactivity-fundamentals.html",
+            },
+            {
+              text: "Computed Properties (Vue docs)",
+              link: "https://vuejs.org/guide/essentials/computed.html",
+            },
+            {
+              text: "Composition API Reference (Vue docs)",
+              link: "https://vuejs.org/api/#composition-api",
+            },
+          ],
+        },
       ],
-      '/guide/solid/': [
+      "/guide/compiler/vue/": [
         {
-          text: 'Guide (Solid)',
+          text: "Guide (Vue)",
           items: [
-            { text: 'Getting Started', link: '/guide/solid/' },
-            { text: 'Integration with React', link: '/guide/solid/integration-with-react' },
-            { text: 'Logic sharing', link: '/guide/solid/logic-sharing' },
-            { text: 'Difference with React', link: '/guide/solid/difference-with-react' },
-            { text: 'Difference with Vue', link: '/guide/solid/difference-with-solid' },
-            { text: 'Compatibility', link: '/guide/solid/compatibility' }
-          ]
-        }
-      ]
+            { text: "Getting Started", link: "/guide/compiler/vue/" },
+            {
+              text: "Difference with React",
+              link: "/guide/compiler/vue/difference-with-react",
+            },
+            {
+              text: "Difference with Vue",
+              link: "/guide/compiler/vue/difference-with-vue",
+            },
+            {
+              text: "Conditional rendering",
+              link: "/guide/compiler/vue/conditional-rendering",
+            },
+            { text: "Logic sharing", link: "/guide/compiler/vue/logic-sharing" },
+            {
+              text: "Integration with React",
+              link: "/guide/compiler/vue/integration-with-react",
+            },
+            {
+              text: "Using Vue libraries",
+              link: "/guide/compiler/vue/using-vue-libraries",
+            },
+            {
+              text: "Compilation mode",
+              link: "/guide/compiler/vue/mode",
+            },
+            {
+              text: "Async components",
+              link: "/guide/compiler/vue/async-component",
+            },
+            {
+              text: "Extra",
+              link: "/guide/compiler/vue/extra",
+            },
+            { text: "Equivalence table", link: "/guide/compiler/vue/equivalence" },
+            { text: "Compatibility table", link: "/guide/compiler/vue/compatibility" },
+            {
+              text: "Reactivity Fundamentals (Vue docs)",
+              link: "https://vuejs.org/guide/essentials/reactivity-fundamentals.html",
+            },
+            {
+              text: "Computed Properties (Vue docs)",
+              link: "https://vuejs.org/guide/essentials/computed.html",
+            },
+            {
+              text: "Composition API Reference (Vue docs)",
+              link: "https://vuejs.org/api/#composition-api",
+            },
+          ],
+        },
+      ],
+      "/guide/solid/": [
+        {
+          text: "Guide (Solid)",
+          items: [
+            { text: "Getting Started", link: "/guide/solid/" },
+            {
+              text: "Integration with React",
+              link: "/guide/solid/integration-with-react",
+            },
+            { text: "Logic sharing", link: "/guide/solid/logic-sharing" },
+            {
+              text: "Difference with React",
+              link: "/guide/solid/difference-with-react",
+            },
+            {
+              text: "Difference with Vue",
+              link: "/guide/solid/difference-with-solid",
+            },
+            { text: "Compatibility", link: "/guide/solid/compatibility" },
+          ],
+        },
+      ],
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Lazy-work/reactive-vue' }
+      { icon: "github", link: "https://github.com/Lazy-work/bridge" },
     ],
     footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024 William (Abdullah) NGBAMA'
-    }
-  }
-})
+      message: "Released under the MIT License.",
+      copyright: "Copyright © 2024 William (Abdullah) NGBAMA",
+    },
+  },
+  markdown: {
+    codeTransformers: [transformerTwoslash()],
+    config(md) {
+      md.use(groupIconMdPlugin);
+    },
+  },
+  vite: {
+    plugins: [
+      groupIconVitePlugin({
+        customIcon: {
+          firebase: "vscode-icons:file-type-firebase",
+          ".gitlab-ci.yml": "vscode-icons:file-type-gitlab",
+          farm: localIconLoader(import.meta.url, "assets/farm.svg"),
+          rolldown: localIconLoader(
+            import.meta.url,
+            "assets/rolldown.svg",
+          ),
+          // rspack: localIconLoader(
+          //   import.meta.url,
+          //   "assets/rspack.svg",
+          // ),
+        },
+      }),
+    ],
+    optimizeDeps: {
+      include: [
+        "@shikijs/vitepress-twoslash/client"
+      ],
+    },
+  },
+});
