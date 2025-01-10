@@ -9,7 +9,7 @@ This page will give more details about what the compiler does for you
 Before :
 
 ```js
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
 
   return () => (
@@ -21,7 +21,7 @@ const Counter = $bridge(() => {
 After :
 
 ```js
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
 
   const cb = () => count.value++;
@@ -35,7 +35,7 @@ const Counter = $bridge(() => {
 Before :
 
 ```js
-const Component = $bridge(() => {
+const Component = $unison(() => {
   const count = ref(0);
 
   function increment() {
@@ -56,7 +56,7 @@ const Component = $bridge(() => {
 After :
 
 ```js
-const Component = $bridge(() => {
+const Component = $unison(() => {
   const count = ref(0);
 
   function increment() {
@@ -83,7 +83,7 @@ const Component = $bridge(() => {
 Before :
 
 ```js
-const Component = $bridge(() => {
+const Component = $unison(() => {
   const count = ref(0);
 
   function increment() {
@@ -108,7 +108,7 @@ const Component = $bridge(() => {
 After (approximate, not the exact compiled code):
 
 ```js
-const Component = $bridge(() => {
+const Component = $unison(() => {
   const count = ref(0);
 
   function increment() {

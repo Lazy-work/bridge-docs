@@ -4,9 +4,9 @@ outline: deep
 
 # Equivalence
 
-From React to Bridge library
+From React to Unison framework
 
-| React                    |                                 Bridge lib                                  |
+| React                    |                                 Unison                                  |
 | ------------------------ | :---------------------------------------------------------------------------: |
 | `useState()`             |                           `ref()` / ~ `reactive()`                            |
 | `useDebugValue()`        |                              Not implemented yet                              |

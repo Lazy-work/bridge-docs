@@ -4,40 +4,40 @@ outline: deep
 
 # Need a compiler ?
 
-While you can use the Bridge library without any compilation, a compiler is provided to optimize Bridge components.
+While you can use the Unison framework without any compilation, a compiler is provided to optimize Unison components.
 
 ## What are the Benefits?
 
-The compiler is simple but efficient. Leveraging the strong context and primitives provided by the Bridge library (thanks to the Vue Model), the compiler performs optimizations that can be done manually but automatically for you.
+The compiler is simple but efficient. Leveraging the strong context and primitives provided by the Unison framework (thanks to the Vue Model), the compiler performs optimizations that can be done manually but automatically for you.
 
 ### Key Benefits:
 
 1. **Static JSX Optimization**: The compiler identifies static parts of the returned JSX within a component's body and ensures these parts are executed only once.
 2. **Granular Reactivity**: For the remaining dynamic parts, the compiler uses `computed` to regenerate them granularly as needed.
 3. **Automatic Template Wrapping**: The JSX is not returned as a function. Instead, the compiler automatically wraps the template for you.
-4. **Automatic Component conversion**: The compiler converts component in Bridge component automatically.
-5. **Async client components**: The compiler allow to create async client components
+4. **Automatic Component conversion**: The compiler converts component in Unison component automatically.
+5. **Async client components** (Coming soon): The compiler allow to create async client components
 
-These optimizations result in more efficient and performant Bridge components, enhancing the overall development experience.
+These optimizations result in more efficient and performant Unison components, enhancing the overall development experience.
 
 ## Installation
 
 ::: code-group
 
 ```bash [NPM]
-$ npm install @bridge/core @bridge/vue unplugin-bridge
+$ npm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Yarn]
-$ yarn add @bridge/core @bridge/vue unplugin-bridge
+$ yarn add @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [PNPM]
-$ pnpm install @bridge/core @bridge/vue unplugin-bridge
+$ pnpm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Bun]
-$ bun install @bridge/core @bridge/vue unplugin-bridge
+$ bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 :::
@@ -46,11 +46,11 @@ $ bun install @bridge/core @bridge/vue unplugin-bridge
 
 ```ts [Vite]
 // vite.config.ts
-import { bridgeVue } from 'unplugin-bridge/vite'
+import { unisonVue } from 'unplugin-unisonjs/vite'
 
 export default defineConfig({
   plugins: [
-    bridgeVue({
+    unisonVue({
       /* options */
     }),
     react(),
@@ -64,7 +64,7 @@ export default defineConfig({
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-bridge/webpack')({
+    require('unplugin-unisonjs/webpack')({
       /* options */
     }),
     //...
@@ -77,7 +77,7 @@ module.exports = {
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-bridge/rspack')({
+    require('unplugin-unisonjs/rspack')({
       /* options */
     }),
   ],
@@ -86,11 +86,11 @@ module.exports = {
 
 ```ts [Farm]
 // farm.config.ts
-import { bridgeVue } from 'unplugin-bridge/farm'
+import { unisonVue } from 'unplugin-unisonjs/farm'
 
 export default defineConfig({
   plugins: [
-    bridgeVue({
+    unisonVue({
       /* options */
     }),
   ],
@@ -99,11 +99,11 @@ export default defineConfig({
 
 ```js [Rollup]
 // rollup.config.js
-import { bridgeVue } from 'unplugin-bridge/rollup'
+import { unisonVue } from 'unplugin-unisonjs/rollup'
 
 export default {
   plugins: [
-    bridgeVue({
+    unisonVue({
       /* options */
     }),
   ],
@@ -112,11 +112,11 @@ export default {
 
 ```js [Rolldown]
 // rolldown.config.js
-import { bridgeVue } from 'unplugin-bridge/rolldown'
+import { unisonVue } from 'unplugin-unisonjs/rolldown'
 
 export default {
   plugins: [
-    bridgeVue({
+    unisonVue({
       /* options */
     }),
   ],
@@ -126,27 +126,27 @@ export default {
 ```js [esbuild]
 // esbuild.config.js
 import { build } from 'esbuild'
-import { bridgeVue } from 'unplugin-bridge/esbuild'
+import { unisonVue } from 'unplugin-unisonjs/esbuild'
 
 build({
-  plugins: [bridgeVue({ /* options */ })],
+  plugins: [unisonVue({ /* options */ })],
 })
 ```
 
 ```js [Astro]
 // astro.config.mjs
 import { defineConfig } from 'astro/config'
-import { bridgeVue } from 'unplugin-bridge/astro'
+import { unisonVue } from 'unplugin-unisonjs/astro'
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [bridgeVue({ /* options */ })],
+  integrations: [unisonVue({ /* options */ })],
 })
 ```
 
 
 ::: warning
-Bridge.js doesn't work with Tanstack Start
+Unison.js doesn't work with Tanstack Start
 :::
 
 ### Babel {#babel}
@@ -157,24 +157,24 @@ After installing, add it to your Babel config. Please note that it’s critical 
 
 ```js
 // babel.config.js
-const sharedBridgeConfig = {
+const sharedUnisonConfig = {
   signals: ["ref", "shallowRef", "reactive", "shallowReactive", "readonly"],
-  module: '@bridge/vue'
+  module: '@unisonjs/vue'
 }
-const BridgeCompilerConfig = {
-  ...sharedBridgeConfig,
+const UnisonCompilerConfig = {
+  ...sharedUnisonConfig,
   /* ... */
 };
-const BridgeFastRefreshConfig = {
-  ...sharedBridgeConfig,
+const UnisonFastRefreshConfig = {
+  ...sharedUnisonConfig,
   /* ... */
 };
 
 module.exports = function () {
   return {
     plugins: [
-      ["babel-plugin-bridge-compiler", BridgeCompilerConfig], // must run first!
-      ["babel-plugin-bridge-fast-refresh", BridgeFastRefreshConfig],
+      ["babel-plugin-unisonjs-compiler", UnisonCompilerConfig], // must run first!
+      ["babel-plugin-unisonjs-fast-refresh", UnisonFastRefreshConfig],
       // ...
     ],
   };

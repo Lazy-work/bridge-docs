@@ -16,7 +16,7 @@
 | `shallowRef()`                 |  ✅️   |
 | `triggerRef()`                 |  ✅️   |
 | `customRef()`                  |  ✅️   |
-| `shallowBridge()`              |  ✅️   |
+| `shallowReactive()`            |  ✅️   |
 | `shallowReadonly()`            |  ✅️   |
 | `toRaw()`                      |  ✅️   |
 | `markRaw()`                    |  ✅️   |
@@ -33,7 +33,7 @@
 | `toRefs()`                      |  ✅️   |
 | `toRaw()`                       |  ✅️   |
 | `isProxy()`                     |  ✅️   |
-| `isBridge()`                    |  ✅️   |
+| `isReactive()`                  |  ✅️   |
 | `isReadonly()`                  |  ✅️   |
 
 | Vue Composition API (Lifecycle Hooks) | Status |

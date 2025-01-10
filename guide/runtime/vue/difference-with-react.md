@@ -8,13 +8,12 @@ outline: deep
 
 In React, every time a state changes, the function representing the component is re-executed entirely, unless you use React hooks like `useEffect` or `useMemo` to specify that some parts of your code should not run again or should run under certain conditions. Reactivity is enabled everywhere unless you opt out.
 
-In the `Bridge` context, your component runs only once unless you declare explicitly that's you want treat a piece code as a side-effect
-Reactivity is disable unless you opt-in.
+In the `Unison` context, your component runs only once unless you declare explicitly that's you want treat a piece of code as a side-effect. Reactivity is disable unless you opt-in.
 
 ```js
-import { $bridge, ref } from "@bridge/vue";
+import { $unison, ref } from "@unisonjs/vue";
 
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
 
   setInterval(() => count.value++, 1000); // Will not run again
@@ -31,12 +30,12 @@ const Counter = $bridge(() => {
 ## Effect tracks dependencies automatically
 
 When you create an effect in React, you must specify which state you want to track, to re-run the side-effect on change
-In the Bridge context, an effect track it's dependencies itself without needed a specification of your part
+In the Unison context, an effect track it's dependencies itself without needed a specification of your part
 
 ```js
-import { $bridge, ref, watchEffect } from "@bridge/vue";
+import { $unison, ref, watchEffect } from "@unisonjs/vue";
 
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
 
   watchEffect(() => {
@@ -57,9 +56,9 @@ const Counter = $bridge(() => {
 Because a component runs only once, you can declare your callback in the component body and reference it in your JSX. No function will be recreated, and your JSX will keep the same reference. The state is accessed via a proxy (ref or reactive), so you can retrieve the current and updated state at any time.
 
 ```js
-import { $bridge, ref } from "@bridge/vue";
+import { $unison, ref } from "@unisonjs/vue";
 
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
 
   function increment() {
@@ -75,14 +74,14 @@ const Counter = $bridge(() => {
 });
 ```
 
-## No effect retriggered when a state is mutated inside
+## An effect can't
 
-An effect triggered in one cycle can't be retriggered in the next cycle, even if this effect changes a state it depends on. This prevents the common pitfalls associated with `useEffect`.
+An effect that mutate its dependency won't trigger in the next cycle. A small security compare to `useEffect`.
 
 ```js
-import { $bridge, ref, watchEffect } from "@bridge/vue";
+import { $unison, ref, watchEffect } from "@unisonjs/vue";
 
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
   const doubleCount = ref(0);
 
@@ -107,9 +106,9 @@ const Counter = $bridge(() => {
 Because a component runs only once, a conditional return can't work as it does in React.
 
 ```js
-import { $bridge, ref } from "@bridge/vue";
+import { $unison, ref } from "@unisonjs/vue";
 
-const ConditionalComponent = $bridge(() => {
+const ConditionalComponent = $unison(() => {
   const count = ref(0);
 
   // Will not be evaluate more than once
@@ -129,16 +128,16 @@ const ConditionalComponent = $bridge(() => {
 
 ## Must return a function and not the JSX itself
 
-A component body runs only once so to enable the reflection of the state on UI, the component have return function to render on every state changes
+A component body runs only once so to enable the reflection of the state on UI, the component has to return a function to render on every state changes
 
 ## Can’t destructure props to preserve reactivity
 
 State is accessed via a proxy, enabling the tracking of state and defining effect dependencies. To preserve reactivity, props should not be destructured.
 
 ```js
-import { $bridge, ref, watchEffect } from "@bridge/vue";
+import { $unison, ref, watchEffect } from "@unisonjs/vue";
 
-const ExampleComponent = $bridge((props) => {
+const ExampleComponent = $unison((props) => {
   const { value } = props; // Do not destructure props
 
   watchEffect(() => {

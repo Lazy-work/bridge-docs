@@ -4,23 +4,23 @@ outline: deep
 
 # Integration with React
 
-## Using a react component inside a Bridge component and vice-versa
+## Using a react component inside a Unison component and vice-versa
 
-When you declare a Bridge component, it produces a React component that renders standard JSX. You can pass your component as a child as usual.
+When you declare a Unison component, it produces a React component that renders standard JSX. You can pass your component as a child as usual.
 
-## Using React hook inside a Bridge component
+## Using React hook inside a Unison component
 
-In a Bridge component, you can't use React hooks as usual. Technically, you can call a React hook, but due to the one-time execution paradigm of a Bridge component, the hook won't be called over time and it might introduce some bugs.
+In a Unison component, you can't use React hooks as usual. Technically, you can call a React hook, but due to the one-time execution paradigm of a Unison component, the hook won't be called over time and it might introduce some bugs.
 
-To bring a react hook to the bridge world, you need to wrap it with: `toBridgeHook`
+To bring a react hook to the unisonjs world, you need to wrap it with: `toUnisonHook`
 
 ```js
 import { useQuery as uq } from "@tanstack/react-query";
-import { $bridge, toBridgeHook } from "@bridge/vue";
+import { $unison, toUnisonHook } from "@unisonjs/vue";
 
-const useQuery = toBridgeHook(uq);
+const useQuery = toUnisonHook(uq);
 
-const TodoList = $bridge(() => {
+const TodoList = $unison(() => {
   const { data } = useQuery({
     queryKey: ["todos"],
     queryFn: getTodos,
@@ -38,18 +38,18 @@ const TodoList = $bridge(() => {
 export default TodoList;
 ```
 
-By default, `toBridgeHook` will track individually every first depth properties of an object.
+By default, `toUnisonHook` will track individually every first depth properties of an object.
 Also it tracks only non-object values to prevent excessive rerender.
 
-If you need to track the result as a whole, you can pass `{ shallow: true }` as an option to `toBridgeHook`
+If you need to track the result as a whole, you can pass `{ shallow: true }` as an option to `toUnisonHook`
 
 ```js
 import { useQueryClient as uqc } from "@tanstack/react-query";
-import { toBridgeHook, $bridge } from "@bridge/vue";
+import { toUnisonHook, $unison } from "@unisonjs/vue";
 
-const useQueryClient = toBridgeHook(uqc, { shallow: true });
+const useQueryClient = toUnisonHook(uqc, { shallow: true });
 
-const PrintQueryClient = $bridge(() => {
+const PrintQueryClient = $unison(() => {
   const client = useQueryClient();
 
   return () => <p>{JSON.stringify(client.value)}</p>;
@@ -58,19 +58,19 @@ const PrintQueryClient = $bridge(() => {
 export default PrintQueryClient;
 ```
 
-## Using Bridge (Vue) primitives inside a React component
+## Using Unison (Vue) primitives inside a React component
 
-You can consume Bridge (Vue) primitives like `ref` or `reactive` inside standard React components by using the `useBridge` hook. This enables React components to integrate seamlessly with bridge state.
+You can consume Unison (Vue) primitives like `ref` or `reactive` inside standard React components by using the `useUnison` hook. This enables React components to integrate seamlessly with unisonjs state.
 
 ### Example with `ref`
 
 ```js
-import { ref, useBridge } from "@bridge/vue";
+import { ref, useUnison } from "@unisonjs/vue";
 
 const count = ref(0);
 
 function Counter() {
-  useBridge();
+  useUnison();
 
   return <button onClick={() => count.value++}>count is {count.value}</button>;
 }
@@ -79,12 +79,12 @@ function Counter() {
 ### Example with `reactive`
 
 ```js
-import { reactive, useBridge } from "@bridge/vue";
+import { reactive, useUnison } from "@unisonjs/vue";
 
 const store = reactive({ count: 0 });
 
 function Counter() {
-  useBridge();
+  useUnison();
 
   return (
     <button onClick={() => store.count++}>
@@ -98,7 +98,7 @@ function Counter() {
 
 ```js
 // hooks/counter.js
-import { ref } from "@bridge/vue";
+import { ref } from "@unisonjs/vue";
 
 const count = ref(0);
 
@@ -113,11 +113,11 @@ export function useCounter() {
 
 ```js
 // components/Counter.jsx
-import { useBridge } from "@bridge/vue";
+import { useUnison } from "@unisonjs/vue";
 import { useCounter } from "../hooks/counter";
 
 function Counter() {
-  useBridge();
+  useUnison();
   const { value, increment, decrement } = useCounter();
 
   return (
@@ -135,7 +135,7 @@ function Counter() {
 If you have created some composables that you want to use in a normal React component, you can wrap your composables with the `createReactHook` helper :
 
 ```js
-import { createReactHook } from "@bridge/vue";
+import { createReactHook } from "@unisonjs/vue";
 
 export const useOnlineStatus = createReactHook(() => {
   const isOnline = ref(true);
@@ -160,14 +160,14 @@ export const useOnlineStatus = createReactHook(() => {
 });
 ```
 
-Don't forget to call the `useBridge()` hook
+Don't forget to call the `useUnison()` hook
 
 ```js
 // components/online-status.jsx
-import { useBridge } from "@bridge/vue";
+import { useUnison } from "@unisonjs/vue";
 
 function OnlineStatus() {
-  useBridge();
+  useUnison();
   const isOnline = useOnlineStatus();
 
   return <p>Connected: {isOnline.value}</p>;

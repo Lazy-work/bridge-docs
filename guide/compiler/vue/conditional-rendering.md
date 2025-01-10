@@ -10,14 +10,14 @@ To conditionally render, you can do as usual in React :
 <div>{count.value > 5 && <p>It's greater than 5</p>}</div>
 ```
 
-Additionally, the Bridge library provides helpers to make conditional rendering more appealing and readable.
+Additionally, the Unison framework provides helpers to make conditional rendering more appealing and readable.
 
 ## If
 
-The Bridge library provides an `$if` helper to enable conditional rendering :
+The Unison framework provides an `$if` helper to enable conditional rendering :
 
 ```js
-import { $if } from "@bridge/vue";
+import { $if } from "@unisonjs/vue";
 
 $if(store.count % 2)
   .then(<p>It's even</p>)
@@ -29,7 +29,7 @@ $if(store.count % 2)
 To avoid unnecessary creation of elements, you can wrap the JSX in a function. This way, the element will only be created and returned when the conditional statement is fulfilled.
 
 ```js
-import { $if } from "@bridge/vue";
+import { $if } from "@unisonjs/vue";
 
 $if(store.count % 2)
   .then(() => <p>It's even</p>)
@@ -41,7 +41,7 @@ $if(store.count % 2)
 
 ## Switch case
 
-The Bridge library provides an `$switch` helper to enable the use of switch case for conditional rendering. The `$switch` helper should be chained with the call of the `case` function, with the first parameter being the value to match and the last parameter being the value to return. The last call chained has to be `default` to return the value after evaluation.
+The Unison framework provides an `$switch` helper to enable the use of switch case for conditional rendering. The `$switch` helper should be chained with the call of the `case` function, with the first parameter being the value to match and the last parameter being the value to return. The last call chained has to be `default` to return the value after evaluation.
 
 ```js
 $switch(count.value)
@@ -105,10 +105,10 @@ return () =>
     .default(<p>I'm lost again ¯\_(ツ)_/¯</p>);
 ```
 
-If you need to match the shape of a ref, the Bridge library provides the `v` helper to make pattern matching more convenient with refs:
+If you need to match the shape of a ref, the Unison framework provides the `v` helper to make pattern matching more convenient with refs:
 
 ```js
-import { v } from "@bridge/vue";
+import { v } from "@unisonjs/vue";
 
 $switch(result)
   .case({ status: v("pending") }, <p>It's loading...</p>)

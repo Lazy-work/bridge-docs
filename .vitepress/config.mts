@@ -8,7 +8,7 @@ import {
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Bridge",
+  title: "Unison.js",
   description: "Opt-in reactivity for React",
   /* prettier-ignore */
   head: [
@@ -16,10 +16,10 @@ export default defineConfig({
     ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
-    ['meta', { property: 'og:title', content: 'Bridge Library | Opt-in reactivity for React' }],
-    ['meta', { property: 'og:site_name', content: 'Bridge Library' }],
-    ['meta', { property: 'og:image', content: 'https://reactive-lib.netlify.app/logo.png' }],
-    ['meta', { property: 'og:url', content: 'https://reactive-lib.netlify.app/' }],
+    ['meta', { property: 'og:title', content: 'Unison.js Framework | Opt-in reactivity for React' }],
+    ['meta', { property: 'og:site_name', content: 'Unison.js Framework' }],
+    ['meta', { property: 'og:image', content: 'https://unisonjs.netlify.app/logo.png' }],
+    ['meta', { property: 'og:url', content: 'https://unisonjs.netlify.app/' }],
   ],
   themeConfig: {
     logo: { src: "/logo.svg", width: 24, height: 24 },
@@ -104,10 +104,10 @@ export default defineConfig({
               text: "Compilation mode",
               link: "/guide/compiler/vue/mode",
             },
-            {
-              text: "Async components",
-              link: "/guide/compiler/vue/async-component",
-            },
+            // {
+            //   text: "Async components",
+            //   link: "/guide/compiler/vue/async-component",
+            // },
             {
               text: "Extra",
               link: "/guide/compiler/vue/extra",
@@ -154,7 +154,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/Lazy-work/bridge" },
+      { icon: "github", link: "https://github.com/Lazy-work/unisonjs" },
     ],
     footer: {
       message: "Released under the MIT License.",

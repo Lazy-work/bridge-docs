@@ -9,19 +9,19 @@ outline: deep
 ::: code-group
 
 ```bash [NPM]
-$ npm install @bridge/core @bridge/vue unplugin-bridge
+$ npm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Yarn]
-$ yarn add @bridge/core @bridge/vue unplugin-bridge
+$ yarn add @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [PNPM]
-$ pnpm install @bridge/core @bridge/vue unplugin-bridge
+$ pnpm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Bun]
-$ bun install @bridge/core @bridge/vue unplugin-bridge
+$ bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 :::
@@ -30,11 +30,11 @@ $ bun install @bridge/core @bridge/vue unplugin-bridge
 
 ```ts [Vite]
 // vite.config.ts
-import { bridgeVue } from "unplugin-bridge/vite";
+import { unisonVue } from "unplugin-unisonjs/vite";
 
 export default defineConfig({
   plugins: [
-    bridgeVue({
+    unisonVue({
       compiler: false,
       /* options */
     }),
@@ -48,7 +48,7 @@ export default defineConfig({
 module.exports = {
   /* ... */
   plugins: [
-    require("unplugin-bridge/webpack")({
+    require("unplugin-unisonjs/webpack")({
       compiler: false,
       /* options */
     }),
@@ -62,7 +62,7 @@ module.exports = {
 module.exports = {
   /* ... */
   plugins: [
-    require("unplugin-bridge/rspack")({
+    require("unplugin-unisonjs/rspack")({
       compiler: false,
       /* options */
     }),
@@ -73,11 +73,11 @@ module.exports = {
 
 ```ts [Farm]
 // farm.config.ts
-import { bridgeVue } from "unplugin-bridge/farm";
+import { unisonVue } from "unplugin-unisonjs/farm";
 
 export default defineConfig({
   plugins: [
-    bridgeVue({
+    unisonVue({
       compiler: false,
       /* options */
     })
@@ -88,11 +88,11 @@ export default defineConfig({
 
 ```js [Rollup]
 // rollup.config.js
-import { bridgeVue } from "unplugin-bridge/rollup";
+import { unisonVue } from "unplugin-unisonjs/rollup";
 
 export default {
   plugins: [
-    bridgeVue({
+    unisonVue({
       compiler: false,
       /* options */
     }),
@@ -103,11 +103,11 @@ export default {
 
 ```js [Rolldown]
 // rolldown.config.js
-import { bridgeVue } from "unplugin-bridge/rolldown";
+import { unisonVue } from "unplugin-unisonjs/rolldown";
 
 export default {
   plugins: [
-    bridgeVue({
+    unisonVue({
       compiler: false,
       /* options */
     }),
@@ -119,11 +119,11 @@ export default {
 ```js [esbuild]
 // esbuild.config.js
 import { build } from "esbuild";
-import { bridgeVue } from "unplugin-bridge/esbuild";
+import { unisonVue } from "unplugin-unisonjs/esbuild";
 
 build({
   plugins: [
-    bridgeVue({
+    unisonVue({
       compiler: false,
       /* options */
     }),
@@ -135,12 +135,12 @@ build({
 ```js [Astro]
 // astro.config.mjs
 import { defineConfig } from "astro/config";
-import { bridgeVue } from "unplugin-bridge/astro";
+import { unisonVue } from "unplugin-unisonjs/astro";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    bridgeVue({
+    unisonVue({
       compiler: false,
       /* options */
     }),
@@ -149,7 +149,7 @@ export default defineConfig({
 ```
 
 ::: warning
-Bridge.js doesn't work with Tanstack Start
+Unison.js doesn't work with Tanstack Start
 :::
 
 ### Babel {#babel}
@@ -160,20 +160,20 @@ After installing, add it to your Babel config. Please note that it’s critical 
 
 ```js
 // babel.config.js
-const sharedBridgeConfig = {
+const sharedUnisonConfig = {
   signals: ["ref", "shallowRef", "reactive", "shallowReactive", "readonly"],
-  module: "@bridge/vue",
+  module: "@unisonjs/vue",
 };
 
-const BridgeFastRefreshConfig = {
-  ...sharedBridgeConfig,
+const UnisonFastRefreshConfig = {
+  ...sharedUnisonConfig,
   /* ... */
 };
 
 module.exports = function () {
   return {
     plugins: [
-      ["babel-plugin-bridge-fast-refresh", BridgeFastRefreshConfig],
+      ["babel-plugin-unisonjs-fast-refresh", UnisonFastRefreshConfig],
       // ...
     ],
   };
@@ -188,14 +188,14 @@ Expo uses Babel via Metro, so refer to the [Usage with Babel](#babel) section fo
 
 React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
 
-## Creating a Bridge component
+## Creating a Unison component
 
-Bridge components are function thats needs to be wrap in the `$bridge` function and return the jsx as a function
+Unison components are function thats needs to be wrap in the `$unison` function and return the jsx as a function
 
 ```js
-import { $bridge, ref } from "@bridge/vue";
+import { $unison, ref } from "@unisonjs/vue";
 
-const Counter = $bridge(() => {
+const Counter = $unison(() => {
   const count = ref(0);
 
   setInterval(() => count.value++, 1000);

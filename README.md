@@ -1,4 +1,4 @@
-# [Bridge Docs](https://bridgejs.netlify.app/)
+# [Unison Docs](https://unisonjsjs.netlify.app/)
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)] (https://github.com/Lazy-work/reactive-docs/blob/main/LICENSE)
 

@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: "Bridge.js Framework"
+  name: "Unison.js Framework"
   text: "React but more reactive"
   tagline: "Ease the complexity of reactivity in React"
   image:
     src: /logo-with-shadow.png
-    alt: Bridge
+    alt: Unison
   actions:
     - theme: brand
       text: Get started

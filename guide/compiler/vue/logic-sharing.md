@@ -6,11 +6,11 @@ outline: deep
 
 ## Compasables
 
-In React, we have hooks, and in Vue (or a Bridge context), we have composables. The concept is similar to hooks.
+In React, we have hooks, and in Vue (or a Unison context), we have composables. The concept is similar to hooks.
 
 ```js
 // compasables.js
-import { ref, watchPostEffect } from '@bridge/vue';
+import { ref, watchPostEffect } from '@unisonjs/vue';
 
 export function useOnlineStatus() {
  const isOnline = ref(true);
@@ -50,13 +50,13 @@ export default StatusBar;
 
 ## Global state
 
-Vue allows you to declare state outside of a component, making it possible to create a shared store. In Bridge (Vue), you can do the same.
+Vue allows you to declare state outside of a component, making it possible to create a shared store. In Unison (Vue), you can do the same.
 
 Using `ref`
 
 ```js
 // store.js
-import { ref } from '@bridge/vue'
+import { ref } from '@unisonjs/vue'
 
 const count = ref(0);
 
@@ -74,7 +74,7 @@ Using `reactive`
 
 ```js
 // store.js
-import { reactive } from '@bridge/vue'
+import { reactive } from '@unisonjs/vue'
 
 export const store = reactive({
   count: 0,

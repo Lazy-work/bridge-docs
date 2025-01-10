@@ -4,44 +4,11 @@ outline: deep
 
 # Using Vue libraries
 
-The Bridge (Vue) library leverages most of the Vue Composition API, allowing you to use Vue libraries with minimal configuration in your React projects. To set this up, add the following lines to your `package.json` :
-
-```json
-{
-  // for npm
-  "overrides": {
-    "vue-demi": "npm:@bridge/vue",
-    "vue": "npm:@bridge/vue"
-  },
-  // for yarn/pnpm
-  "resolutions": {
-    "vue-demi": "npm:@bridge/vue",
-    "vue": "npm:@bridge/vue"
-  }
-}
-```
-
-If you're using vite, you also need to exclude `@bridge/vue`, `vue` and `vue-demi` from `optimizeDeps`
-
-```js
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-export default defineConfig({
-  plugins: [react()],
-  optimizeDeps: {
-    exclude: ["vue-demi", "vue", "@bridge/vue"],
-  },
-});
-```
-
-Here's an improved and corrected version of your documentation for integrating a Vue plugin using the Bridge (Vue) library in React with Vitepress:
-
----
+The Unison (Vue) framework leverages most of the Vue Composition API, allowing you to use Vue libraries with minimal configuration in your React projects.
 
 ## Using Vue Plugins
 
-Some Vue libraries require attaching a plugin to your application. Here’s how you can integrate a Vue plugin using the Bridge (Vue) library in React :
+Some Vue libraries require attaching a plugin to your application. Here’s how you can integrate a Vue plugin using the Unison (Vue) library in React :
 
 1. **Create an App Context**
 
@@ -70,7 +37,7 @@ Here’s an example using Pinia as the Vue state management library:
 ```jsx
 import ReactDOM from 'react-dom/client';
 import { createPinia } from 'pinia';
-import { AppProvider, createApp } from '@bridge/vue';
+import { AppProvider, createApp } from '@unisonjs/vue';
 
 const pinia = createPinia();
 const app = createApp();
@@ -90,7 +57,7 @@ root.render(
 
 ### Remove overhead
 
-The Bridge library leverage the integration of React Hook however to do so, no only it needs a extra work to enable state tracking and notify changes but also it prevents the Bridge library to overlap React mechanism.
+The Unison framework leverage the integration of React Hook however to do so, no only it needs a extra work to enable state tracking and notify changes but also it prevents the Unison framework to overlap React mechanism.
 
 Using Vue libraries instead of React libraries can significantly reduce overhead by eliminating the need for React primitives such as `useState`, `useEffect` and so on.
 

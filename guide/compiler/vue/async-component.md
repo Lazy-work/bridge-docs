@@ -6,14 +6,14 @@ outline: deep
 
 ## Introduction
 
-The `bridge` compiler allows you to create and use asynchronous client components. When using `async/await`, the component must be wrapped in a `Suspense` boundary to handle loading states effectively.
+The `unisonjs` compiler allows you to create and use asynchronous client components. When using `async/await`, the component must be wrapped in a `Suspense` boundary to handle loading states effectively.
 
 
 ## Exemple
 
 ```js
 // todo-list.jsx
-import { ref } from "@bridge/vue";
+import { ref } from "@unisonjs/vue";
 
 async function TodoList() {
   const todos = ref(await fetchTodos()); // [!code highlight]
@@ -61,7 +61,7 @@ async function TodoList() {
 export default TodoList;
 
 // app.jsx
-import { Suspense } from "@bridge/vue";
+import { Suspense } from "@unisonjs/vue";
 
 export default function App() {
   return (

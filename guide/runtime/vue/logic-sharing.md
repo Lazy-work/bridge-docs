@@ -10,7 +10,7 @@ In React, we have hooks, and in Vue (or a reactive context), we have composables
 
 ```js
 // compasables.js
-import { ref, watchPostEffect } from '@bridge/vue';
+import { ref, watchPostEffect } from '@unisonjs/vue';
 
 export function useOnlineStatus() {
  const isOnline = ref(true);
@@ -37,10 +37,10 @@ export function useOnlineStatus() {
 
 ```jsx
 // StatusBar.jsx
-import { $bridge } from '@bridge/vue';
+import { $unison } from '@unisonjs/vue';
 import { useOnlineStatus } from './compasables';
 
-const StatusBar = $bridge(() => {
+const StatusBar = $unison(() => {
   const isOnline = useOnlineStatus();
   
   return () => <h1>{isOnline.value ? '✅ Online' : '❌ Disconnected'}</h1>;
@@ -57,7 +57,7 @@ Using `ref`
 
 ```js
 // store.js
-import { ref } from '@bridge/vue'
+import { ref } from '@unisonjs/vue'
 
 const count = ref(0);
 
@@ -75,7 +75,7 @@ Using `reactive`
 
 ```js
 // store.js
-import { reactive } from '@bridge/vue'
+import { reactive } from '@unisonjs/vue'
 
 export const store = reactive({
   count: 0,
@@ -89,10 +89,10 @@ Consuming the shared store
 
 ```jsx
 // shared-counter.jsx
-import { reactivity as rct } from '@bridge/vue';
+import { reactivity as rct } from '@unisonjs/vue';
 import { store } from './store.js';
 
-const SharedCounter = $bridge(() => {
+const SharedCounter = $unison(() => {
   return () => (
     <div>
       <p>Current count: {store.count}</p>
