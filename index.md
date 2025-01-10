@@ -20,7 +20,7 @@ hero:
 features:
   - icon: ⚙️
     title: Runtime first
-    details: Every primitive works without needing a compiler
+    details: Designed to run without compilation
   - icon: <svg xmlns="http://www.w3.org/2000/svg" width="30" viewBox="-11.5 -10.23174 23 20.46348">
             <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
             <g stroke="#61dafb" stroke-width="1" fill="none">
@@ -37,10 +37,10 @@ features:
   - icon: 🌐️
     title: Compatible Vue eco-system
     details: Works with Vue libraries and composables
-  - icon: 📦
-    title: Tiny library
-    details: ~ 10kb minified and gzip
+  - icon: ⬇️
+    title: Low level API (Core)
+    details: Provide API to control scheduling and side-effect
   - icon: 🛠️
-    title: Small compiler (Optional)
-    details: A small compiler for code optimization and reduce boilerplate
+    title: Optional compilation
+    details: Provide a compiler to optimize applications and improve the DX
 ---
