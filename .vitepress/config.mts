@@ -26,9 +26,9 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Why this library ?", link: "/guide/" },
-      { text: "Guide (Core)", link: "/guide/core/"  },
+      // { text: "Guide (Core)", link: "/guide/core/"  },
       { text: "Guide (Vue)", link: "/guide/runtime/vue/"  },
-      { text: "Guide (Solid)", link: "/guide/solid/"  },
+      // { text: "Guide (Solid)", link: "/guide/solid/"  },
     ],
     sidebar: {
       "/guide/runtime/vue/": [
