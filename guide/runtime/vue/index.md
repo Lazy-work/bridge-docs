@@ -57,20 +57,6 @@ module.exports = {
 };
 ```
 
-```js [Rspack]
-// rspack.config.js
-module.exports = {
-  /* ... */
-  plugins: [
-    require("unplugin-unisonjs/rspack")({
-      compiler: false,
-      /* options */
-    }),
-    //...
-  ],
-};
-```
-
 ```ts [Farm]
 // farm.config.ts
 import { unisonVue } from "unplugin-unisonjs/farm";

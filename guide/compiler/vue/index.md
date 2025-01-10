@@ -72,17 +72,6 @@ module.exports = {
 }
 ```
 
-```js [Rspack]
-// rspack.config.js
-module.exports = {
-  /* ... */
-  plugins: [
-    require('unplugin-unisonjs/rspack')({
-      /* options */
-    }),
-  ],
-}
-```
 
 ```ts [Farm]
 // farm.config.ts
