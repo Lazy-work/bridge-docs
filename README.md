@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)] (https://github.com/Lazy-work/reactive-docs/blob/main/LICENSE)
 
-This repo contains the source code and documentation powering reactive-lib.netlify.app.
+This repo contains the source code and documentation powering unisonjs.netlify.app.
 
 ## Contributing
 
