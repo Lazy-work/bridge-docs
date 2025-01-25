@@ -98,7 +98,7 @@ export default defineConfig({
             },
             {
               text: "Compiler in an existing React codebase",
-              link: "/guide/runtime/vue/incremental-compiler"
+              link: "/guide/compiler/vue/incremental-compiler"
             },
             {
               text: "Using Vue libraries",
