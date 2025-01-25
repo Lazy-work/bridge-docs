@@ -39,24 +39,24 @@ $if(store.count % 2)
 :::
 
 
-## Switch case
+## Match with
 
-The Unison framework provides an `$switch` helper to enable the use of switch case for conditional rendering. The `$switch` helper should be chained with the call of the `case` function, with the first parameter being the value to match and the last parameter being the value to return. The last call chained has to be `default` to return the value after evaluation.
+The Unison framework provides an `$match` helper to enable the use of switch case for conditional rendering. The `$match` helper should be chained with the call of the `with` function, with the first parameter being the value to match and the last parameter being the value to return. The last call chained has to be `default` to return the value after evaluation.
 
 ```js
-$switch(count.value)
-  .case(1, <p>It's one</p>)
-  .case(2, <p>It's two</p>)
-  .case(3, <p>It's two</p>)
+$match(count.value)
+  .with(1, <p>It's one</p>)
+  .with(2, <p>It's two</p>)
+  .with(3, <p>It's three</p>)
   .default(<p>I'm lost ¯\_(ツ)_/¯</p>);
 ```
 
-The `case` function supports the definition of several values to match, and any expression that returns a boolean :
+The `with` function supports the definition of several values to match, and any expression that returns a boolean :
 
 ```js
-$switch(count.value)
-  .case(4, 5, 6, <p>It's between 4 and 6</p>)
-  .case(
+$match(count.value)
+  .with(4, 5, 6, <p>It's between 4 and 6</p>)
+  .with(
     count.value > 10,
     <p>It seems bigger than anything before, maybe it's OVER 9000 !!!!</p>
   );
@@ -65,31 +65,31 @@ $switch(count.value)
 Be careful: passing a `true` value as a condition will match the case any time, and passing a `false` value will skip the case every time as well.
 
 ```js
-$switch(value)
-  .case(false, <p>The value is false</p>) // Always skipped
-  .case(true, <p>The value is true</p>) // Always matched
+$match(value)
+  .with(false, <p>The value is false</p>) // Always skipped
+  .with(true, <p>The value is true</p>) // Always matched
   .default();
 ```
 
 To match a boolean value, use comparison just as you would in an if statement :
 
 ```js
-$switch(value)
-  .case(value === true, <p>The value is true</p>)
-  .case(value === false, <p>The value is false</p>)
+$match(value)
+  .with(value === true, <p>The value is true</p>)
+  .with(value === false, <p>The value is false</p>)
   .default()
   ...
 ```
 
-The `case` function also supports basic pattern matching to match the shape of an object :
+The `with` function also supports basic pattern matching to match the shape of an object :
 
 ```js
 const result = useTodos();
 
 return () =>
-  $switch(result)
-    .case({ status: "pending" }, <p>It's loading...</p>)
-    .case({ status: "success" }, () => (
+  $match(result)
+    .with({ status: "pending" }, <p>It's loading...</p>)
+    .with({ status: "success" }, () => (
       <ul>
         {result.data.map((item) => (
           <li>
@@ -99,7 +99,7 @@ return () =>
         ))}
       </ul>
     ))
-    .case({ status: "error" }, () => (
+    .with({ status: "error" }, () => (
       <p>Oops, something goes wrong: {result.error}</p>
     ))
     .default(<p>I'm lost again ¯\_(ツ)_/¯</p>);
@@ -110,9 +110,9 @@ If you need to match the shape of a ref, the Unison framework provides the `v` h
 ```js
 import { v } from "@unisonjs/vue";
 
-$switch(result)
-  .case({ status: v("pending") }, <p>It's loading...</p>)
-  .case({ status: v("success") }, () => (
+$match(result)
+  .with({ status: v("pending") }, <p>It's loading...</p>)
+  .with({ status: v("success") }, () => (
     <ul>
       {result.data.value.map((item) => (
         <li>
@@ -122,7 +122,7 @@ $switch(result)
       ))}
     </ul>
   ))
-  .case(
+  .with(
     { status: v("error") },
     <p>Oops, something goes wrong: {result.error}</p>
   )
