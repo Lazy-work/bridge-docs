@@ -6,24 +6,24 @@ outline: deep
 
 From React to Unison framework
 
-| React                    |                                 Unison                                  |
+| React                    |                                    Unison                                     |
 | ------------------------ | :---------------------------------------------------------------------------: |
 | `useState()`             |                           `ref()` / ~ `reactive()`                            |
 | `useDebugValue()`        |                              Not implemented yet                              |
 | `useMemo()`              |                                 `computed()`                                  |
-| `useDeferredValue()`     |                               `deferredValue()`                               |
+| `useDeferredValue()`     |                              Not implemented yet                              |
 | `useRef()`               |                                 `reactRef()`                                  |
 | `useEffect()`            | `watch()` - flush: post / `watchEffect()` - flush: post / `watchPostEffect()` |
-| `useId()`                |                                 `createId()`                                  |
+| `useId()`                |                              Not implemented yet                              |
 | `useImperativeHandle()`  |                              Not implemented yet                              |
-| `useInsertionEffect()`   |                              `insertionEffect()`                              |
-| `useLayoutEffect()`      |                               `layoutEffect()`                                |
-| `useReducer()`           |                                  `reducer()`                                  |
+| `useInsertionEffect()`   |                           `watchInsertionEffect()`                            |
+| `useLayoutEffect()`      |                             `watchLayoutEffect()`                             |
+| `useReducer()`           |                              Not implemented yet                              |
 | `useActionState()`       |                              Not implemented yet                              |
 | `useOptimistic()`        |                              Not implemented yet                              |
 | `useCallback()`          |                                  Not needed                                   |
-| `useContext()`           |                                  `context()`                                  |
-| `useTransition()`        |                                `transition()`                                 |
+| `useContext()`           |                              Not implemented yet                              |
+| `useTransition()`        |                              Not implemented yet                              |
 | `useSyncExternalStore()` |                              Not implemented yet                              |
 
 From Vue to React
