@@ -10,6 +10,7 @@ const compilerExclusive = [
     "/guide/compiler/vue/async-component",
     "/guide/compiler/vue/extra",
     "/guide/compiler/vue/mode",
+    "/guide/compiler/vue/incremental-compiler"
 ];
 function switchMode() {
     if (compiler.value) {
