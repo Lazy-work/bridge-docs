@@ -54,7 +54,7 @@ export default defineConfig({
               link: "/guide/runtime/vue/integration-with-react",
             },
             {
-              text: "Using vue libraries",
+              text: "Using Vue libraries",
               link: "/guide/runtime/vue/using-vue-libraries",
             },
             { text: "Equivalence table", link: "/guide/runtime/vue/equivalence" },
