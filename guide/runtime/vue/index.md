@@ -9,19 +9,19 @@ outline: deep
 ::: code-group
 
 ```bash [NPM]
-$ npm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
+npm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Yarn]
-$ yarn add @unisonjs/core @unisonjs/vue unplugin-unisonjs
+yarn add @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [PNPM]
-$ pnpm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
+pnpm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Bun]
-$ bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
+bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 :::
@@ -66,7 +66,7 @@ export default defineConfig({
     unisonVue({
       compiler: false,
       /* options */
-    })
+    }),
     //...
   ],
 });
@@ -166,13 +166,9 @@ module.exports = function () {
 };
 ```
 
-### Expo
+### Expo/React Native (Metro)
 
-Expo uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
-
-### Metro (React Native)
-
-React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
+Due to compatibility issues between Babel plugins and the Metro bundler, no additional configuration is required at the moment. However, Fast Refresh is not currently working.
 
 ## Creating a Unison component
 
@@ -193,7 +189,6 @@ const Counter = $unison(() => {
   );
 });
 ```
-
 
 ## New to Vue ?
 

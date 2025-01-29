@@ -10,7 +10,7 @@ While you can use the Unison framework without any compilation, a compiler is pr
 
 The compiler is simple but efficient. Leveraging the strong context and primitives provided by the Unison framework (thanks to the Vue Model), the compiler performs optimizations that can be done manually but automatically for you.
 
-### Key Benefits:
+### Key Benefits
 
 1. **Static JSX Optimization**: The compiler identifies static parts of the returned JSX within a component's body and ensures these parts are executed only once.
 2. **Granular Reactivity**: For the remaining dynamic parts, the compiler uses `computed` to regenerate them granularly as needed.
@@ -25,19 +25,19 @@ These optimizations result in more efficient and performant Unison components, e
 ::: code-group
 
 ```bash [NPM]
-$ npm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
+npm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Yarn]
-$ yarn add @unisonjs/core @unisonjs/vue unplugin-unisonjs
+yarn add @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [PNPM]
-$ pnpm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
+pnpm install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 ```bash [Bun]
-$ bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
+bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 ```
 
 :::
@@ -46,7 +46,7 @@ $ bun install @unisonjs/core @unisonjs/vue unplugin-unisonjs
 
 ```ts [Vite]
 // vite.config.ts
-import { unisonVue } from 'unplugin-unisonjs/vite'
+import { unisonVue } from "unplugin-unisonjs/vite";
 
 export default defineConfig({
   plugins: [
@@ -56,7 +56,27 @@ export default defineConfig({
     react(),
     //...
   ],
-})
+});
+```
+
+```js [Next.js]
+// next.config.mjs
+import { unisonVue } from "unplugin-unisonjs/webpack";
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config, options) => {
+    config.plugins.push(
+      unisonVue({
+        compiler: {
+          mode: "directive", // to avoid compiling server components
+        },
+      }),
+    );
+    return config;
+  },
+  // ...
+};
 ```
 
 ```js [webpack]
@@ -64,18 +84,17 @@ export default defineConfig({
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-unisonjs/webpack')({
+    require("unplugin-unisonjs/webpack")({
       /* options */
     }),
     //...
   ],
-}
+};
 ```
-
 
 ```ts [Farm]
 // farm.config.ts
-import { unisonVue } from 'unplugin-unisonjs/farm'
+import { unisonVue } from "unplugin-unisonjs/farm";
 
 export default defineConfig({
   plugins: [
@@ -83,12 +102,12 @@ export default defineConfig({
       /* options */
     }),
   ],
-})
+});
 ```
 
 ```js [Rollup]
 // rollup.config.js
-import { unisonVue } from 'unplugin-unisonjs/rollup'
+import { unisonVue } from "unplugin-unisonjs/rollup";
 
 export default {
   plugins: [
@@ -96,12 +115,12 @@ export default {
       /* options */
     }),
   ],
-}
+};
 ```
 
 ```js [Rolldown]
 // rolldown.config.js
-import { unisonVue } from 'unplugin-unisonjs/rolldown'
+import { unisonVue } from "unplugin-unisonjs/rolldown";
 
 export default {
   plugins: [
@@ -109,30 +128,37 @@ export default {
       /* options */
     }),
   ],
-}
+};
 ```
 
 ```js [esbuild]
 // esbuild.config.js
-import { build } from 'esbuild'
-import { unisonVue } from 'unplugin-unisonjs/esbuild'
+import { build } from "esbuild";
+import { unisonVue } from "unplugin-unisonjs/esbuild";
 
 build({
-  plugins: [unisonVue({ /* options */ })],
-})
+  plugins: [
+    unisonVue({
+      /* options */
+    }),
+  ],
+});
 ```
 
 ```js [Astro]
 // astro.config.mjs
-import { defineConfig } from 'astro/config'
-import { unisonVue } from 'unplugin-unisonjs/astro'
+import { defineConfig } from "astro/config";
+import { unisonVue } from "unplugin-unisonjs/astro";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [unisonVue({ /* options */ })],
-})
+  integrations: [
+    unisonVue({
+      /* options */
+    }),
+  ],
+});
 ```
-
 
 ::: warning
 Unison.js doesn't work with Tanstack Start
@@ -148,8 +174,8 @@ After installing, add it to your Babel config. Please note that it’s critical 
 // babel.config.js
 const sharedUnisonConfig = {
   signals: ["ref", "shallowRef", "reactive", "shallowReactive", "readonly"],
-  module: '@unisonjs/vue'
-}
+  module: "@unisonjs/vue",
+};
 const UnisonCompilerConfig = {
   ...sharedUnisonConfig,
   /* ... */
@@ -170,11 +196,15 @@ module.exports = function () {
 };
 ```
 
+### Expo/React Native (Metro)
 
-### Expo
+Unison.js compiler is not supported yet (Sadly, Metro mess up everything)
+If you want to use Unison.js with React Native or Expo, go to the full runtime [documentation](/guide/runtime/vue/index.md)
 
-Expo uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
+## New to Vue ?
 
-### Metro (React Native)
+If you haven't used Vue before, especially the Vue Composition API, I suggest you check out the Vue documentation on reactivity before continuing with this documentation :
 
-React Native uses Babel via Metro, so refer to the [Usage with Babel](#babel) section for installation instructions.
+- [Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+
+- [Computed Properties](https://vuejs.org/guide/essentials/computed.html)
