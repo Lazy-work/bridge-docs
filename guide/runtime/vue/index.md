@@ -172,7 +172,7 @@ Due to compatibility issues between Babel plugins and the Metro bundler, no addi
 
 ## Creating a Unison component
 
-Unison components are function thats needs to be wrap in the `$unison` function and return the jsx as a function
+Unison components are functions that need to be wrapped in the `$unison` function and return JSX as a function
 
 ```js
 import { $unison, ref } from "@unisonjs/vue";
